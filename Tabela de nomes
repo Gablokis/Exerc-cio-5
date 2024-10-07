@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela de Nomes</title>
+    <style>
+        body {
+            background-color: #CCCCCC;
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 50%;
+            margin: 20px auto;
+            background-color: #CCCCCC;
+            border-collapse: separate; 
+            border-spacing: 3px;
+        }
+        th {
+            font-size: 15px;
+            font-weight: 700;
+            background-color: #000033;
+            color: #CCCCCC;
+            padding: 10px;
+        }
+        td {
+            font-size: 14px;
+            background-color: #000066;
+            color: #CCCCCC;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<h1 style="text-align: center;">Tabela de Nomes</h1>
+<table id="namesTable">
+    <tr>
+        <th>Índice</th>
+        <th>Nome</th>
+    </tr>
+</table>
+
+<script>
+    let names = [];
+    let index = 1;
+
+    while (true) {
+        let name = prompt("Digite um nome (ou cancele para finalizar):");
+        if (name === null) {
+            break;
+        }
+        if (name.trim() !== "") { 
+            names.push(name);
+            let table = document.getElementById("namesTable");
+            let row = table.insertRow();
+            let cellIndex = row.insertCell(0);
+            let cellName = row.insertCell(1);
+            cellIndex.textContent = index++;
+            cellName.textContent = name;
+        }
+    }
+</script>
+
+</body>
+</html>
