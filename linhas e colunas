@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela nomes</title>
+    <script>
+        let nomes = [];
+        let indice = 1;
+    
+        while (true) {
+            let nome = prompt("Digite um nome (ou cancele para finalizar):");
+            if (nome === null) {
+                break;
+            }
+            nomes.push(nome);
+        }
+    
+        if (nomes.length > 0) {
+            document.write('<table>');
+            document.write('<tr><th>Índice</th><th>Nome</th></tr>');
+            nomes.forEach((nome) => {
+                document.write(`<tr><td>${indice++}</td><td>${nome}</td></tr>`);
+            });
+            document.write('</table>');
+        } else {
+            alert("Nenhum nome foi digitado.");
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+<style>
+    body {
+        background-color: #CCCCCC;
+        color: #CCCCCC;
+        font-family: Arial, sans-serif;
+    }
+    table {
+        width: 50%;
+        margin: 20px auto;
+        background-color: #CCCCCC;
+        border-collapse: collapse;
+        border-color: #CCCCCC;
+    }
+    th {
+        font-size: 15px;
+        font-weight: 700;
+        background-color: #000033;
+        color: #CCCCCC;
+        padding: 10px;
+    }
+    td {
+        font-size: 14px;
+        background-color: #000066;
+        color: #CCCCCC;
+        padding: 10px;
+        text-align: left;
+    }
+</style>
+</html>
