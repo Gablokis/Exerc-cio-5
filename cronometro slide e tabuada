@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página com Abas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #CCCCCC;
+            text-align: center;
+        }
+        #tabs {
+            display: flex;
+            cursor: pointer;
+            margin: 20px;
+        }
+        .tab {
+            flex: 1;
+            padding: 10px;
+            background-color: #000066;
+            color: #CCCCCC;
+            margin: 0 5px;
+            border-radius: 5px;
+        }
+        .tab.active {
+            background-color: #000033;
+        }
+        .content {
+            display: none;
+            background-color: #FFFFFF;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px;
+        }
+        .content.active {
+            display: block;
+        }
+        #slideshow img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Página com Abas</h1>
+<div id="tabs">
+    <div class="tab active" onclick="showTab('timer')">Cronômetro</div>
+    <div class="tab" onclick="showTab('slideshow')">Slideshow</div>
+    <div class="tab" onclick="showTab('multiplication')">Tabuada</div>
+</div>
+
+<div id="timer" class="content active">
+    <h2>Cronômetro</h2>
+    <div id="chrono">0</div>
+</div>
+
+<div id="slideshow" class="content">
+    <h2>Slideshow</h2>
+    <div id="slideshow-container">
+        <img id="slide" src="https://via.placeholder.com/400x300.png?text=Imagem+1" alt="Slideshow">
+    </div>
+    <button onclick="previousImage()">Anterior</button>
+    <button onclick="nextImage()">Próximo</button>
+</div>
+
+<div id="multiplication" class="content">
+    <h2>Tabuada</h2>
+    <input type="number" id="numberInput" placeholder="Digite um número">
+    <button onclick="calculateTabuada()">Calcular Tabuada</button>
+    <div id="tabuadaResult"></div>
+</div>
+
+<script>
+    // Abas
+    function showTab(tabName) {
+        const tabs = document.querySelectorAll('.tab');
+        const contents = document.querySelectorAll('.content');
+
+        tabs.forEach(tab => {
+            tab.classList.remove('active');
+            if (tab.textContent === tabName.charAt(0).toUpperCase() + tabName.slice(1)) {
+                tab.classList.add('active');
+            }
+        });
+
+        contents.forEach(content => {
+            content.classList.remove('active');
+            if (content.id === tabName) {
+                content.classList.add('active');
+            }
+        });
+    }
+
+    // Cronômetro
+    let seconds = 0;
+    setInterval(() => {
+        seconds++;
+        document.getElementById("chrono").textContent = seconds;
+    }, 1000);
+
+    // Slideshow
+    const images = [
+        "https://via.placeholder.com/400x300.png?text=Imagem+1",
+        "https://via.placeholder.com/400x300.png?text=Imagem+2",
+        "https://via.placeholder.com/400x300.png?text=Imagem+3",
+        "https://via.placeholder.com/400x300.png?text=Imagem+4",
+        "https://via.placeholder.com/400x300.png?text=Imagem+5"
+    ];
+    let currentImageIndex = 0;
+
+    function showImage(index) {
+        document.getElementById("slide").src = images[index];
+    }
+
+    function previousImage() {
+        currentImageIndex = (currentImageIndex === 0) ? images.length - 1 : currentImageIndex - 1;
+        showImage(currentImageIndex);
+    }
+
+    function nextImage() {
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+        showImage(currentImageIndex);
+    }
+
+    // Tabuada
+    function calculateTabuada() {
+        const number = parseInt(document.getElementById("numberInput").value);
+        const resultDiv = document.getElementById("tabuadaResult");
+        resultDiv.innerHTML = '';
+
+        if (!isNaN(number)) {
+            for (let i = 1; i <= 10; i++) {
+                resultDiv.innerHTML += `${number} x ${i} = ${number * i}<br>`;
+            }
+        } else {
+            resultDiv.innerHTML = "Por favor, insira um número válido.";
+        }
+    }
+</script>
+
+</body>
+</html>
