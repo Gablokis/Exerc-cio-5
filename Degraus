@@ -7,7 +7,7 @@
     <style>
         table {
             border-collapse: separate;
-            border-spacing: 5px; /* Define a margem entre as células */
+            border-spacing: 5px;
         }
         td {
             width: 50px;
