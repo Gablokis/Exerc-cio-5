@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Cadastro</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #CCCCCC;
+            text-align: center;
+            padding: 20px;
+        }
+        form {
+            background-color: #FFFFFF;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: auto;
+            width: 300px;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #CCCCCC;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            background-color: #000066;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #000033;
+        }
+        #output {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #000066;
+            color: #FFFFFF;
+            border-radius: 5px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Cadastro de Aluno</h1>
+<form id="registrationForm">
+    <input type="text" id="name" placeholder="Nome" required>
+    <input type="text" id="rgm" placeholder="RGM" required>
+    <input type="number" id="partialGrade" placeholder="Nota Parcial (máx 2)" min="0" max="2" step="0.01" required>
+    <input type="number" id="exerciseGrade" placeholder="Nota Exercícios (máx 1)" min="0" max="1" step="0.01" required>
+    <input type="number" id="projectGrade" placeholder="Nota Projeto (máx 2)" min="0" max="2" step="0.01" required>
+    <input type="number" id="regimentalGrade" placeholder="Nota Regimental (máx 5)" min="0" max="5" step="0.01" required>
+    <button type="button" onclick="register()">Cadastrar</button>
+    <button type="button" onclick="displayData()">Exibir Dados</button>
+</form>
+
+<div id="output"></div>
+
+<script>
+    let studentData = {};
+
+    function register() {
+        studentData.name = document.getElementById("name").value;
+        studentData.rgm = document.getElementById("rgm").value;
+        studentData.partialGrade = parseFloat(document.getElementById("partialGrade").value);
+        studentData.exerciseGrade = parseFloat(document.getElementById("exerciseGrade").value);
+        studentData.projectGrade = parseFloat(document.getElementById("projectGrade").value);
+        studentData.regimentalGrade = parseFloat(document.getElementById("regimentalGrade").value);
+
+        alert("Cadastro realizado com sucesso!");
+        document.getElementById("registrationForm").reset(); // Limpa o formulário
+    }
+
+    function displayData() {
+        const output = document.getElementById("output");
+        output.innerHTML = `
+            <strong>Dados do Aluno:</strong><br>
+            Nome: ${studentData.name}<br>
+            RGM: ${studentData.rgm}<br>
+            Nota Parcial: ${studentData.partialGrade}<br>
+            Nota Exercícios: ${studentData.exerciseGrade}<br>
+            Nota Projeto: ${studentData.projectGrade}<br>
+            Nota Regimental: ${studentData.regimentalGrade}
+        `;
+        output.style.display = "block";
+    }
+</script>
+
+</body>
+</html>
