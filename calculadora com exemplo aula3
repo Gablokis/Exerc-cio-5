@@ -141,7 +141,7 @@ html {
 		<span onclick="insert('5')">5</span>
 		<span onclick="insert('6')">6</span>
 		<span class="operator" onclick="insert('-')">-</span>
-		<span onclick="insert('71')">1</span>
+		<span onclick="insert('1')">1</span>
 		<span onclick="insert('2')">2</span>
 		<span onclick="insert('3')">3</span>
 		<span class="operator" onclick="insert('/')">/</span>
